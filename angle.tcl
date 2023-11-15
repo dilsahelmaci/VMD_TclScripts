@@ -16,19 +16,19 @@ for {set frame 0} {$frame < $num_frames} {incr frame} {
     set domain2 [atomselect top "chain B and (resid 6 to 47)"]
     set domain3 [atomselect top "(chain A or chain B) and (resid 58)"]
 
-    set domain1c [measure center $domain1 weight mass]
-    set domain2c [measure center $domain2 weight mass]
-    set domain3c [measure center $domain3 weight mass]
+    set domain1_com [measure center $domain1 weight mass]
+    set domain2_com [measure center $domain2 weight mass]
+    set domain3_com [measure center $domain3 weight mass]
 
-    set vec1 [vecsub $domain3c $domain1c]
-    set vec2 [vecsub $domain3c $domain2c]
+    set vec1 [vecsub $domain3_com $domain1_com]
+    set vec2 [vecsub $domain3_com $domain2_com]
 
     set nvec1 [vecnorm $vec1]
     set nvec2 [vecnorm $vec2]
 
-    set cost [vecdot $nvec1 $nvec2]
+    set costheta [vecdot $nvec1 $nvec2]
 
-    set angle_rad [expr acos($cost)]
+    set angle_rad [expr acos($costheta)]
     set angle_deg [expr $angle_rad*(180/$pi)]
 
     # Print or save the angle for each frame
