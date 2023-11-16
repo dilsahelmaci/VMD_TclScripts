@@ -1,11 +1,11 @@
-# Load the trajectory and topology
+# Load the structure and trajectory
 mol load pdb ../homodimer.pdb trr ../repall.trr
 set num_frames [molinfo top get numframes]
 
 # Open a file to save the angle values
 set file_id [open "angle_output.txt" w]
 
-# Loop through the frames and calculate the angle between domains
+# Loop through the frames and calculate the angle between selected domains
 for {set frame 0} {$frame < $num_frames} {incr frame} {
 
     animate goto $frame
